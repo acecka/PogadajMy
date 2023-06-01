@@ -4,6 +4,11 @@ from django.views import View
 from .models import Therapist, Client, Appointment, Link
 
 
+class MainPage(View):
+    def get(self, request):
+        return render(request, 'main_page.html')
+
+
 class MakeAppointment(View):
     def get(self, request):
         therapists = Therapist.objects.all()

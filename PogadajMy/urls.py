@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from pogadaj.views import MakeAppointment, AboutUs, Contact, Links
+from pogadaj.views import MakeAppointment, AboutUs, Contact, Links, MainPage
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
+    path('', MainPage.as_view()),
     path("schedule_appointment", MakeAppointment.as_view()),
     path("AboutUs", AboutUs.as_view()),
     path("Contact", Contact.as_view()),
