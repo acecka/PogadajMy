@@ -1,0 +1,18 @@
+{% extends 'main_page.html' %}
+
+{% block content %}
+<style>
+    .body {
+            position: fixed;
+            top: 150px;
+        }
+</style>
+<body class="body">
+    <h1>Kontakt</h1>
+    {% for item in contact %}
+        <h3>Dotacje mile widziane: {{ item.donation }}</h3>
+        <p>Nasza lokacja: {{ item.address }}</p>
+        <p>Napisz do nas maila:{{ item.email }}</p>
+    {% endfor %}
+</body>
+{% endblock %}

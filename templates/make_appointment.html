@@ -1,19 +1,42 @@
-% extends 'base.html' %}
+{% extends 'main_page.html' %}
+
 {% block content %}
+    <style>
+        .schedule{
+            position: fixed;
+            top: 200px;
+        }
 
-<label for="client">Client:</label>
-<select id="client" name="client">
-  {% for client in clients %}
-    <option value="{{ client.id }}">{{ client.full_name }}</option>
-  {% endfor %}
-</select><br>
+    </style>
+<body class = schedule>
+  <h1>Zarezerwuj wizyte u nas</h1>
+  <form method='POST'>
+    {% csrf_token %}
+    <label for="therapist">Wybierz terapeute:</label>
+    <select name="therapist" id="therapist">
+      {% for therapist in therapists %}
+        <option value="{{ therapist.id }}">{{ therapist.first_name }} {{ therapist.last_name }}</option>
+      {% endfor %}
+    </select>
+    <br>
 
-<label for="date_and_time">Date and Time:</label>
-<input type="datetime-local" id="date_and_time" name="date_and_time"><br>
+    <label for="client">Wybierz pacjenta:</label>
+    <select name="client" id="client">
+      {% for client in clients %}
+        <option value="{{ client.id }}">{{ client.first_name }} {{ client.last_name }}</option>
+      {% endfor %}
+    </select>
+    <br>
 
-<label for="visit_length">Visit Length (in minutes):</label>
-<input type="number" id="visit_length" name="visit_length"><br>
+    <label for="date_and_time">Dzien i godzina:</label>
+    <input type="datetime-local" name="date_and_time" id="date_and_time">
+    <br>
 
-<input type="submit" value="Submit">
+    <label for="visit_length">Dlugosc wizyty(w minutach):</label>
+    <input type="number" name="visit_length" id="visit_length">
+    <br>
 
-{% endblock content%}
+    <input type="submit" value="Zarezerwuj">
+  </form>
+</body>
+{% endblock %}

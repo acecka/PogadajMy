@@ -1,0 +1,22 @@
+{% extends 'main_page.html' %}
+
+{% block content %}
+<style>
+    .body {
+            position: fixed;
+            top: 150px;
+        }
+</style>
+<body class="body">
+    {% for therapist in therapists %}
+        <div class="news-item">
+            <h2>{{ therapist.first_name }} {{ therapist.last_name }}</h2>
+            <h2>{{ therapist.specialties }}</h2>
+            <p>{{ therapist.description }}</p>
+            <p>{{ therapist.phone_number }} {{ therapist.emailAddress }}</p>
+        </div>
+    {% empty %}
+        <p>No news available.</p>
+    {% endfor %}
+</body>
+{% endblock %}

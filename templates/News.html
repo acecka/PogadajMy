@@ -1,0 +1,21 @@
+{% extends 'main_page.html' %}
+
+{% block content %}
+<style>
+    .body {
+            position: fixed;
+            top: 150px;
+        }
+</style>
+<body class="body">
+    <h1>News</h1>
+    {% for news_item in news %}
+        <div class="news-item">
+            <h2>{{ news_item.summary }}</h2>
+            <p>{{ news_item.description }}</p>
+        </div>
+    {% empty %}
+        <p>No news available.</p>
+    {% endfor %}
+</body>
+{% endblock %}

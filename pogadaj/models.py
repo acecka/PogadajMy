@@ -35,20 +35,20 @@ class ScheduleCalendar(models.Model):
 
 
 class Therapist(models.Model):
-    first_Name = models.CharField(max_length=64)
-    last_Name = models.CharField(max_length=128)
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=128)
     specialties = models.ManyToManyField(TherapistSpecialties)
     description = models.TextField()
-    phone_Number = models.IntegerField
-    emilAddress = models.EmailField()
+    phone_number = models.IntegerField(null=True)
+    emailAddress = models.EmailField()
     schedule = models.ManyToManyField(ScheduleCalendar)
     therapist_appointment = models.ManyToManyField('Client', through='Appointment')
 
 
 class Client(models.Model):
-    first_Name = models.CharField(max_length=64)
-    last_Name = models.CharField(max_length=128)
-    phone_Number = models.IntegerField
+    first_name = models.CharField(max_length=64)
+    last_name = models.CharField(max_length=128)
+    phone_number = models.IntegerField(null=True)
     emailAddress = models.EmailField()
 
 
@@ -56,7 +56,7 @@ class Appointment(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     therapist = models.ForeignKey(Therapist, on_delete=models.CASCADE)
     date_and_time = models.DateTimeField()
-    visit_length = models.PositiveIntegerField()
+    visit_length = models.PositiveIntegerField(default=60, validators=[MinValueValidator(15), MaxValueValidator(90)])
 
 
 class Link(models.Model):
@@ -72,3 +72,13 @@ class Contact(models.Model):
     address = models.CharField(max_length=256)
     email = models.EmailField()
     donation = models.CharField(max_length=1000)
+
+
+class AboutUs(models.Model):
+    description = models.TextField()
+
+
+class News(models.Model):
+    summary = models.TextField()
+    description = models.TextField()
+

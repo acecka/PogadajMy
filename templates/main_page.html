@@ -1,13 +1,96 @@
 <!doctype html>
-<html>
+<html lang="eng">
 <head>
     <meta charset="utf-8">
     <title>{% block title %}Strona Główna{% endblock %}</title>
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .footer a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .topnav {
+            position: fixed;
+            right: 0;
+            top: 50px;
+            width: 100%;
+            background-color: #f8f8f8;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .topnav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .User {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 100%;
+            background-color: #bbbbbb;
+            color: #333;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .User a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .header {
+            position: fixed;
+            top: 100px;
+        }
+        .aboutus {
+            position: fixed;
+            top: 150px;
+        }
+    </style>
 </head>
 <body>
-<img src="/static/logo.png", alt="logo">
-<h1>Fundacja PogadajMy</h1>
+<div class="User">
+  <a class="/login" href="/">Zaloguj sie</a>
+  <a href="/register">Zarejestruj sie</a>
+</div>
+<div class="topnav">
+  <a class="active" href="/">Strona główna</a>
+  <a href="/therapists">Nasza kadra</a>
+  <a href="/schedule_appointment">Zarezerwuj wizytę</a>
+  <a href="/News">Aktualności</a>
+  <a href="/Contact">Kontakt</a>
+</div>
+<img src="/static/logo.png" alt="logo">
+<h1 class="header">Fundacja PogadajMy</h1>
+
 {% block content %}
+<div class="aboutus">
+    <h1>O Nas</h1>
+    {% for about_item in about %}
+        <h2>{{ about_item.title }}</h2>
+        <p>{{ about_item.description }}</p>
+    {% endfor %}
+</div>
 {% endblock %}
+<div class="footer">
+    {% for link in links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+</div>
+
 </body>
 </html>
