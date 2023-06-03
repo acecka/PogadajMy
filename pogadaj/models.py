@@ -37,7 +37,7 @@ class ScheduleCalendar(models.Model):
 class Therapist(models.Model):
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=128)
-    specialties = models.ManyToManyField(TherapistSpecialties)
+    specialties = models.ManyToManyField(TherapistSpecialties, null=True)
     description = models.TextField()
     phone_number = models.IntegerField(null=True)
     emailAddress = models.EmailField()
